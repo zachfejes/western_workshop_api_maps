@@ -20,11 +20,12 @@
         <div id="map"></div>
 
         <script>
-            var map;
             let westernLatLong = { lat: 43.0081693, lng: -81.2766837 };
             let initialZoom = 19.76;
+            let heatmapData = [];
+            let map, westernMarker, dataUrl, marker, latLng, heatmap;
 
-            var getJSON = function(url, callback) {
+            function getJSON(url, callback) {
                 console.log("entered getJSON");
 
                 var xhr = new XMLHttpRequest();
@@ -51,33 +52,85 @@
                     zoom: initialZoom
                 });
 
-                var marker = new google.maps.Marker({position: westernLatLong, map: map});
-
-                // Create a <script> tag and set the USGS URL as the source.
-                var script = document.createElement('script');
-
-                // This example uses a local copy of the GeoJSON stored at
-                // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+                westernMarker = new google.maps.Marker({position: westernLatLong, map: map});
                 dataUrl = 'https://data.nasa.gov/resource/gh4g-9sfh.json';
                 
                 getJSON(dataUrl, function(error, response) {
                     console.log("In the callback....");
 
+                    // let geoJsonData = convertToGeoJson(response);
+                    // map.data.addGeoJson(geoJsonData);
+
                     for (var i = 0; i < response.length; i++) {
-                        var coords = response[i].geolocation;
-                        if(coords) {
-                            var latLng = new google.maps.LatLng(coords.latitude, coords.longitude);
-                            var marker = new google.maps.Marker({
-                                position: latLng,
-                                map: map
+                        let { geolocation, mass } = response[i];
+
+                        if(geolocation && mass) {
+                            latLng = new google.maps.LatLng(geolocation.latitude, geolocation.longitude);
+                            heatmapData.push({
+                                location: latLng,
+                                weight: Math.pow(mass, 0.2)
                             });
                         }
                     }
-                });
 
+                    heatmap = new google.maps.visualization.HeatmapLayer({
+                        data: heatmapData,
+                        dissipating: true,
+                        map: map
+                    });
+
+                    console.log("Finished heatmap...");
+
+                    // map.data.setStyle(function(feature) {
+                    //     var mass = feature.getProperty('mass');
+                    //     return {
+                    //         icon: getCircle(mass)
+                    //     };
+                    // });
+                });
             };
-        
+
+
+            // function convertToGeoJson(meteoriteData) {
+
+            //     console.log("meteoriteData: ", meteoriteData);
+
+            //     let geoJson = {
+            //         type: "FeatureCollection",
+            //         features: []
+            //     };
+
+            //     for(let i = 0; i < meteoriteData.length; i++) {
+            //         let meteorite = meteoriteData[i];
+
+            //         if(meteorite.geolocation && meteorite.mass) {
+            //             geoJson.features.push({
+            //                 type: "Feature",
+            //                 properties: meteorite,
+            //                 geometry: {
+            //                     type: "Point",
+            //                     coordinates: [ parseFloat(meteorite.geolocation.longitude), parseFloat(meteorite.geolocation.latitude) ]
+            //                 }
+            //             });
+            //         }
+            //     }
+
+            //     return geoJson;
+            // }
+
+
+            // function getCircle(magnitude) {
+            //     return {
+            //         path: google.maps.SymbolPath.CIRCLE,
+            //         fillColor: 'red',
+            //         fillOpacity: 0.2,
+            //         scale: Math.pow(magnitude, 0.25),
+            //         strokeColor: 'white',
+            //         strokeWeight: 0.5
+            //     };
+            // }
+
         </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDva0UUHVFYviFiDtzuIah-tbrCxQcIhYU&callback=initMap" async defer></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDva0UUHVFYviFiDtzuIah-tbrCxQcIhYU&libraries=visualization&callback=initMap" async defer></script>
     </body>
 </html>
