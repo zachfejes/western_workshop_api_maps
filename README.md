@@ -1,4 +1,4 @@
-# western_workshop_api_maps
+# Western Workshop - Using Google Maps API
 
 Simple vanilla web application leveraging the core Google Maps API.
 
