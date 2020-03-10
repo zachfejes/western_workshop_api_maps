@@ -26,20 +26,15 @@
             let map, westernMarker, dataUrl, marker, latLng, heatmap;
 
             function getJSON(url, callback) {
-                console.log("entered getJSON");
-
                 var xhr = new XMLHttpRequest();
                 xhr.open('GET', url, true);
                 xhr.responseType = 'json';
                 xhr.onload = function() {
-                    console.log("Did the onload thing...");
-
                     var status = xhr.status;
                     if (status === 200) {
-                        console.log("status was 200");
                         callback(null, xhr.response);
-                    } else {
-                        console.log("status was NOT 200");
+                    } 
+                    else {
                         callback(status, xhr.response);
                     }
                 };
@@ -56,8 +51,6 @@
                 dataUrl = 'https://data.nasa.gov/resource/gh4g-9sfh.json';
                 
                 getJSON(dataUrl, function(error, response) {
-                    console.log("In the callback....");
-
                     // let geoJsonData = convertToGeoJson(response);
                     // map.data.addGeoJson(geoJsonData);
 
@@ -78,8 +71,6 @@
                         dissipating: true,
                         map: map
                     });
-
-                    console.log("Finished heatmap...");
 
                     // map.data.setStyle(function(feature) {
                     //     var mass = feature.getProperty('mass');
