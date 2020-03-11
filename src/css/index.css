@@ -21,19 +21,6 @@ h3 {
     font-size: 28px;
 }
 
-#map {
-    position: absolute;
-    top: calc(50vh - 35%);
-    left: calc(50vw + 100%);
-    height: 78%;
-    width: 80%;
-    z-index: 10;
-    transition: 1000ms ease;
-}
-#map.show {
-    left: calc(50vw - 40%);
-}
-
 .nav {
     position: fixed;
     top: 0;
@@ -67,43 +54,6 @@ h3 {
 .nav a:nth-of-type(4) {
     right: 133px;
 }
-
-.nav div.signIn {
-    position: absolute;
-    right: 133px;
-    top: 6px;
-}
-
-.nav p.signOut {
-    position: absolute;
-    top: 12px;
-    right: 133px;
-    cursor: pointer;
-    color: rgb(240, 240, 240);
-    font-size: 20px;
-    display: none;
-}
-
-.nav .personalization {
-    position: absolute;
-    bottom: -25px;
-    right: -50%;
-    height: 25px;
-    width: 50%;
-    background-image: linear-gradient(to right, rgba(50, 50, 50, 0), rgba(50, 50, 50, 0.5));
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
-    transition: 1000ms ease;
-}
-.nav .personalization p {
-    float: right;
-    margin-right: 133px;
-    margin-top: 4px;
-    font-size: 12px;
-}
-.nav .personalization.show {
-    right: 0%;
-}
-
 
 .landing {
     position: relative;

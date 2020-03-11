@@ -6,22 +6,13 @@
         <meta charset="utf-8" />
         <meta name="google-signin-client_id" content="129960326401-8lgjnq9eipm6e666idgviesem7713pst.apps.googleusercontent.com">
         <link rel="stylesheet" type="text/css" href="../css/index.css">
-        <script type="text/javascript" src="../js/fetchMeteoriteData.js"></script>
-        <script type="text/javascript" src="../js/authentication.js"></script>
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
     </head>
     <body>
         <div class="nav" id="navMenu">
             <a href="/">EDC</a>
             
-            <a onclick="toggleMap()">SERVICES</a>
-            <a href="./about">ABOUT</a>
-
-            <div id="signInWrapper" class="signIn g-signin2" data-onsuccess="onSignIn"></div>
-            <p id="signOut" class="signOut" onclick="onSignOut()">SIGN OUT</p>
-
-            <div id="personal" class="personalization"><p id="personalText"></p></div>
-        
+            <a href="#services">SERVICES</a>
+            <a href="#about">ABOUT</a>
         </div>
 
         <div class="landing">
@@ -34,8 +25,5 @@
 
         <div id="map"></div>
     </body>
-    <footer>
-        <script type="text/javascript" src="../js/index.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDva0UUHVFYviFiDtzuIah-tbrCxQcIhYU&libraries=visualization&callback=initMap" async defer></script>
-    </footer>
+    <footer></footer>
 </html>
