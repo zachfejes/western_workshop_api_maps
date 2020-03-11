@@ -10,6 +10,7 @@ html, body {
 h1, h2, h3, h4, h5, h6, p, a, li, ul, div, span {
     font-family: sans-serif;
     margin: 0;
+    color: rgb(200, 200, 200);
 }
 
 h1 {
@@ -47,18 +48,54 @@ h3 {
     font-size: 20px;
 }
 
-.nav a:nth-child(1) {
+.nav a:nth-of-type(1) {
     left: 133px;
 }
 
-.nav a:nth-last-child(1) {
-    right: 133px;
+.nav a:nth-of-type(2) {
+    right: 430px;
 }
-.nav a:nth-last-child(2) {
+.nav a:nth-of-type(3) {
     right: 300px;
 }
-.nav a:nth-last-child(3) {
-    right: 410px;
+.nav a:nth-of-type(4) {
+    right: 133px;
+}
+
+.nav div.signIn {
+    position: absolute;
+    right: 133px;
+    top: 6px;
+}
+
+.nav p.signOut {
+    position: absolute;
+    top: 12px;
+    right: 133px;
+    cursor: pointer;
+    color: rgb(240, 240, 240);
+    font-size: 20px;
+    display: none;
+}
+
+.nav .personalization {
+    position: absolute;
+    bottom: -25px;
+    right: -50%;
+    height: 25px;
+    width: 50%;
+    background-image: linear-gradient(to right, rgba(50, 50, 50, 0), rgba(50, 50, 50, 0.5));
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+    transition: 1000ms ease;
+}
+.nav .personalization p {
+    float: right;
+    margin-right: 133px;
+    margin-top: 4px;
+    font-size: 12px;
+}
+.nav .personalization.show {
+    right: 0%;
 }
 
 
