@@ -118,11 +118,6 @@ function initMap() {
 
     map.mapTypes.set('styled_map', styledMapType);
     map.setMapTypeId('styled_map');
-    
-    fetchMeteoriteData((error, response) => {
-        renderHeatMap(response);
-        //renderWeightMap(response);
-    });
 };
 
 
@@ -140,53 +135,4 @@ function toggleMap() {
             mapElement.classList.remove("show");
         }
     }
-}
-
-
-function renderHeatMap(rawData) {
-    let heatmapData = [];
-
-    for (var i = 0; i < rawData.length; i++) {
-        let { geolocation, mass } = rawData[i];
-
-        heatmapData.push({
-            location: new google.maps.LatLng(geolocation.latitude, geolocation.longitude),
-            weight: Math.pow(mass, 0.1)
-        });
-    }
-
-    return(
-        new google.maps.visualization.HeatmapLayer({
-            data: heatmapData,
-            dissipating: true,
-            map: map,
-            radius: 15,
-            opacity: 0.5
-        })
-    );
-}
-
-
-function renderWeightMap(rawData) {
-    let geoJsonData = convertToGeoJson(rawData);
-    map.data.addGeoJson(geoJsonData);
-
-    map.data.setStyle(function(feature) {
-        var mass = feature.getProperty('mass');
-        return {
-            icon: renderCircle(mass)
-        };
-    });
-}
-
-
-function renderCircle(magnitude) {
-    return {
-        path: google.maps.SymbolPath.CIRCLE,
-        fillColor: 'red',
-        fillOpacity: 0.2,
-        scale: Math.pow(magnitude, 0.25),
-        strokeColor: 'white',
-        strokeWeight: 0.5
-    };
 }
