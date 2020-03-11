@@ -6,7 +6,6 @@
         <meta charset="utf-8" />
         <meta name="google-signin-client_id" content="129960326401-8lgjnq9eipm6e666idgviesem7713pst.apps.googleusercontent.com">
         <link rel="stylesheet" type="text/css" href="../css/index.css">
-        <script type="text/javascript" src="../js/fetchMeteoriteData.js"></script>
         <script type="text/javascript" src="../js/authentication.js"></script>
         <script src="https://apis.google.com/js/platform.js" async defer></script>
     </head>
@@ -14,8 +13,8 @@
         <div class="nav" id="navMenu">
             <a href="/">EDC</a>
             
-            <a onclick="toggleMap()">SERVICES</a>
-            <a href="./about">ABOUT</a>
+            <a href="#services">SERVICES</a>
+            <a href="#about">ABOUT</a>
 
             <div id="signInWrapper" class="signIn g-signin2" data-onsuccess="onSignIn"></div>
             <p id="signOut" class="signOut" onclick="onSignOut()">SIGN OUT</p>
@@ -31,11 +30,7 @@
                 <h3>...one giant space rock at a time.</h3>
             </div>
         </div>
-
-        <div id="map"></div>
     </body>
     <footer>
-        <script type="text/javascript" src="../js/index.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDva0UUHVFYviFiDtzuIah-tbrCxQcIhYU&libraries=visualization&callback=initMap" async defer></script>
     </footer>
 </html>
